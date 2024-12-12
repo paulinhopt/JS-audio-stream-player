@@ -35,13 +35,12 @@ body {
 .background {
     flex: 2;
     border-bottom: 7px solid #bcbcbc;
-    background: #510909;
+    background: #dcc68d;
     padding: 1.5em 0;
-    /* border-radius: 50px; */
+    border-radius: 20px;
     background: #f7f7f7;
     margin: 1.222em;
     box-shadow: 0 0 10px 1px gray;
-    background: ;
 }
 
 .iconify {
@@ -88,7 +87,7 @@ body {
     display: block;
     width: 75px;
     height: 75px;
-    background: #9b4d4d;
+    background: #dcc68d;
     border-radius: 50%;
     animation: pulse-border 2.2s ease-out infinite;
 }
@@ -103,13 +102,13 @@ body {
     display: block;
     width: 75px;
     height: 75px;
-    background: #b22c25;
+    background: #dcc68d;
     border-radius: 50%;
     transition: all 200ms;
 }
 
 .playbutton:hover:after {
-    background-color: darken(#fa183d, 10%);
+    background-color: darken(#dcc68d, 10%);
 }
 
 .playbutton img {
@@ -161,7 +160,7 @@ body {
     border: initial;
     margin: 2px;
     height: 12px;
-    background: whitesmoke;
+    background: #000;
     border-radius: 15px;
     filter: hue-rotate(140deg)brightness(.9);
 }
@@ -200,12 +199,13 @@ i.fa-volume-up {
 @media screen and (max-width: 900px) {
     .flex_1 {
         max-width: 100%;
+        border-radius: 20px;
     }
 }
 
 #nojs_message {
     background: #726f6f;
-    color: white;
+    color: #dcc68d;
     font-weight: bolder;
     line-height: 1.5em;
     padding: 1em;
@@ -245,14 +245,14 @@ input[type="checkbox"]:focus {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: white;
+    background: #111;
     box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
     transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
 }
 
 .toggle:checked {
-    /*! border-color: #B22B2B; */
-    background: #b22c25;
+    /*! border-color: #dcc68d; */
+    background: #dcc68d;
     margin: 1em .3em;
 }
 
@@ -291,7 +291,7 @@ input[type="checkbox"]:focus {
     border-radius: 50%;
     width: 100px;
     height: 75px;
-    background: #c74d47;
+    background: #dcc68d;
 }
 
 #loader {
@@ -333,30 +333,38 @@ input[type="checkbox"]:focus {
 }
 
 
+
 /* optional dark mode support. If not desired remove all code until from here until the end */
 @media (prefers-color-scheme: dark) {
     html {
         background: #121212;
+        background-image: url("./Radial_Forro_Radio.webp");
     }
 
     .background {
         background-color: #161616;
         box-shadow: 0 0 10px 1px #151414;
-        border-color: #5f130f;
+        border-color: #dcc68d;
     }
 
     #artist {
         margin-top: 2em;
     }
 
-    #artist,
-    #song {
-        color: white;
+    #artist{
+        color: #dcc68d;
+        font-weight: 800;
+    }
+
+    #songs {
+        color: #dcc68d;
     }
 
     body {
         box-shadow: none;
         background: #121212;
+        background-image: url("./Radial_Forro_Radio.webp");
+        background-position: center center;
     }
 
     p,
@@ -370,16 +378,17 @@ input[type="checkbox"]:focus {
     .right {
         background: #181a1b;
         box-shadow: none;
-        border-bottom: 7px solid #8c1e18;
+        border-bottom: 7px solid #dcc68d;
     }
 
     .flex_1 {
         background: #232323;
         box-shadow: none;
+        border-radius: 20px;
     }
 
     .iconify {
-        color: white !important;
+        color: #dcc68d !important;
     }
 
     .loader {

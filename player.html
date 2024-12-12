@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Simple js player</title>
+    <title>Rádio Forró Tradicional</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='src/player.css' media='all' />
+    <link rel="icon" type="image/x-icon" href="./src/favicon.ico">
     <!-- Monospace font for play and pause buttons-->
-    <script src="https://kit.fontawesome.com/6b02184769.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/89e13201f8.js" crossorigin="anonymous"></script>
     <!-- OFL font for rest of controls-->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 </head>
@@ -25,7 +26,10 @@
                 <audio preload="metadata" id="audio">Your browser lacks javascript support, please make use of this
                     alternative link https://stream.mp3></audio>
                 <p id="artist" title="Current playing artist">Current playing artist</p>
-                <p id="song" title="Current playing artist">Current playing song</p>
+                <p id="songs" title="Current playing artist">Current playing song</p>
+                <div>
+                    <img id="capa" src="./src/Logo.jpg" alt="Rádio Forró Tradicional" style="width: 200px;">
+                </div>
 
                 <div class="controls">
                     <!-- the rotating loading animation-->

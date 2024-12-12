@@ -1,5 +1,6 @@
-let lowQualityStream = "https://icecast9.play.cz/radio-ostravan.mp3";
-let highQualityStream = "https://icecast9.play.cz/radio-ostravan-256.mp3";
+let lowQualityStream = "https://app.radioforrotradicional.com.br/listen/radioforrotradicional/AAC";
+let highQualityStream = "https://app.radioforrotradicional.com.br/listen/radioforrotradicional/AAC";
+let nowPlaying = "https://app.radioforrotradicional.com.br/api/nowplaying/1";
 
 // this is done to fix caching issues
 function getNewRandomizedLink(linkStream){
@@ -79,13 +80,15 @@ function check(){
 // json parser for current playing song and artist
 // replace with a more relevant parser if needed
 function whatIsPlaying() {
-    var url = lowQualityStream;
+    var url = nowPlaying;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-            document.getElementById('songs').innerHTML = JSON.parse(xmlHttp.responseText).song;
-            document.getElementById('artist').innerHTML = JSON.parse(xmlHttp.responseText).artist;
-            window.document.title = JSON.parse(xmlHttp.responseText).artist + " - " + JSON.parse(xmlHttp.responseText).song + " | Simple player";
+            var response = JSON.parse(xmlHttp.responseText).now_playing.song;
+            document.getElementById('songs').innerHTML = response.title;
+            document.getElementById('artist').innerHTML = response.artist;
+            document.getElementById('capa').src = response.art;
+            window.document.title = response.artist + " - " + response.title + " | Rádio Forró Tradicional";
         }
     }
     xmlHttp.open("GET", url, true);
@@ -93,7 +96,7 @@ function whatIsPlaying() {
 }
 
 whatIsPlaying(); // auto refresh currently playing song. Consider drawback of frequent updates
-setInterval(whatIsPlaying, 1500);
+setInterval(whatIsPlaying, 15000);
 
 document.getElementById('on').addEventListener('click', (evt) => {
     var element = document.getElementById("on");
