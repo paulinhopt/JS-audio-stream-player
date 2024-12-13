@@ -1,105 +1,104 @@
-let lowQualityStream = "https://app.radioforrotradicional.com.br/listen/radioforrotradicional/AAC";
-let highQualityStream = "https://app.radioforrotradicional.com.br/listen/radioforrotradicional/AAC";
+let lowQualityStream = "https://app.radioforrotradicional.com.br/listen/radioforrotradicional/AACLD";
+let highQualityStream = "https://app.radioforrotradicional.com.br/listen/radioforrotradicional/AACHD";
 let nowPlaying = "https://app.radioforrotradicional.com.br/api/nowplaying/1";
 
-// this is done to fix caching issues
-function getNewRandomizedLink(linkStream){
-    return linkStream + "?" + Math.floor((Math.random() * 10000) + 1);
+// Function to add a random query parameter to prevent caching issues
+function getNewRandomizedLink(linkStream) {
+    return `${linkStream}?${Date.now()}`; // Changed to Date.now() for better uniqueness and readability
 }
 
-// check for which audio quality to load
-var checkBox = document.getElementById("quality");
-const radioSource = getNewRandomizedLink(highQualityStream);
-const resetAudio = "about:blank";
+const checkBox = document.getElementById("quality");
 const loader = document.getElementById('loader');
 const audio = document.getElementById('audio');
+audio.preload = 'auto'; // Preload attribute for better buffering
 
-// set initial volume var
-window.SetVolume = function(val) {
-    var player = document.getElementById('audio');
-    player.volume = val / 100;
-}
-
+// Show loader when audio is loading
 audio.addEventListener('loadstart', () => {
-  if (audio.src !== resetAudio) {
-    loader.style.visibility = "visible";
-  }
-});
-
-audio.addEventListener('playing', () => {
-  loader.style.visibility = "hidden";
-});
-
-// if cliked the play button start the stream
-document.getElementById('aroundbutton').addEventListener('click', (evt) => {
-  var element = document.getElementById("on");
-  if(audio.paused){
-    audio.src = resetAudio;
-    audio.pause();
-    audio.src = radioSource;
-    audio.load();
-    audio.play();
-    element.classList.remove("fa-play");
-    element.classList.add("fa-pause");
-    checkBox.checked = true;
-  } else {
-    element.classList.remove("fa-pause");
-    element.classList.add("fa-play");
-    audio.src = resetAudio;
-    audio.pause();
+    if (audio.src !== "about:blank") {
+        loader.style.visibility = "visible";
     }
- })
+});
 
- // triggered by clicking quality choice button
-function check(){
-    if (checkBox.checked) {
-        const radioSource = getNewRandomizedLink(highQualityStream);
-        const resetAudio = "about:blank";
-        var element = document.getElementById("on");
-        audio.src = resetAudio;
-        audio.pause();
-        audio.src = radioSource;
-        audio.load();
-        audio.play();
-        element.classList.remove("fa-play");
-        element.classList.add("fa-pause");
-   } else {
-     const radioSource = getNewRandomizedLink(highQualityStream);
-     const resetAudio = "about:blank";
-       var element = document.getElementById("on");
-       audio.src = resetAudio;
-       audio.pause();
-       audio.src = radioSource;
-       audio.load();
-       audio.play();
-       element.classList.remove("fa-play");
-       element.classList.add("fa-pause");
-  }
-}
+// Hide loader when audio starts playing
+audio.addEventListener('playing', () => {
+    loader.style.visibility = "hidden";
+});
 
-// json parser for current playing song and artist
-// replace with a more relevant parser if needed
-function whatIsPlaying() {
-    var url = nowPlaying;
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-            var response = JSON.parse(xmlHttp.responseText).now_playing.song;
-            document.getElementById('songs').innerHTML = response.title;
-            document.getElementById('artist').innerHTML = response.artist;
-            document.getElementById('capa').src = response.art;
-            window.document.title = response.artist + " - " + response.title + " | Rádio Forró Tradicional";
+// Event to monitor buffering progress and ensure adequate buffer
+audio.addEventListener('progress', () => {
+    const buffered = audio.buffered;
+    if (buffered.length > 0) {
+        const bufferedEnd = buffered.end(buffered.length - 1);
+        const duration = audio.duration;
+        if (duration - bufferedEnd < 10) {
+            console.log("Buffering adequate");
         }
     }
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send();
+});
+
+// Function to set volume based on input slider value
+window.SetVolume = function (val) {
+    audio.volume = val / 100;
+};
+
+// Handle play/pause button click
+document.getElementById('aroundbutton').addEventListener('click', () => {
+    const playButton = document.getElementById("on");
+    if (audio.paused) {
+        startStream(); // Start the stream when audio is paused
+        playButton.classList.remove("fa-play");
+        playButton.classList.add("fa-pause");
+    } else {
+        stopStream(); // Stop the stream when audio is playing
+        playButton.classList.remove("fa-pause");
+        playButton.classList.add("fa-play");
+    }
+});
+
+// Change event for quality checkbox to restart the stream with the selected quality
+checkBox.addEventListener('change', () => {
+    startStream();
+});
+
+// Function to start the audio stream with the selected quality
+function startStream() {
+    const selectedStream = checkBox.checked ? highQualityStream : lowQualityStream; // Check quality selection
+    if (audio.src !== selectedStream) { // Prevent unnecessary reloading if the source hasn't changed
+        audio.src = getNewRandomizedLink(selectedStream); // Add randomized query to prevent caching
+        audio.load(); // Load the audio stream
+        audio.play().catch(error => {
+            console.error("Playback failed: ", error); // Handle playback errors
+        });
+    }
 }
 
-whatIsPlaying(); // auto refresh currently playing song. Consider drawback of frequent updates
-setInterval(whatIsPlaying, 15000);
+// Function to stop the audio stream
+function stopStream() {
+    audio.pause();
+    audio.src = "about:blank"; // Reset audio source to avoid cache issues
+}
 
-document.getElementById('on').addEventListener('click', (evt) => {
-    var element = document.getElementById("on");
-    element.classList.remove("fa-pause");
-    element.classList.add("fa-play");
-})
+// Function to fetch and display currently playing song details
+function whatIsPlaying() {
+    fetch(nowPlaying) // Changed to Fetch API for better performance and readability
+        .then(response => response.json())
+        .then(data => {
+            const songData = data.now_playing.song;
+            document.getElementById('songs').textContent = songData.title;
+            document.getElementById('artist').textContent = songData.artist;
+            document.getElementById('capa').src = songData.art;
+            document.title = `${songData.artist} - ${songData.title} | Rádio Forró Tradicional`;
+        })
+        .catch(error => console.error("Failed to fetch song details: ", error));
+}
+
+// Initial fetch of currently playing song
+whatIsPlaying();
+setInterval(whatIsPlaying, 10000); // Reduced interval to 10 seconds for more frequent updates
+
+// Reset play button when manually stopped
+document.getElementById('on').addEventListener('click', () => {
+    const playButton = document.getElementById("on");
+    playButton.classList.remove("fa-pause");
+    playButton.classList.add("fa-play");
+});

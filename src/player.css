@@ -160,7 +160,7 @@ body {
     border: initial;
     margin: 2px;
     height: 12px;
-    background: #000;
+    background: #000000;
     border-radius: 15px;
     filter: hue-rotate(140deg)brightness(.9);
 }
@@ -200,7 +200,13 @@ i.fa-volume-up {
     .flex_1 {
         max-width: 100%;
         border-radius: 20px;
+        height: 100vh;
     }
+    body {
+        background-color: #121212;
+        background: none !important;
+    }
+
 }
 
 #nojs_message {
@@ -338,7 +344,6 @@ input[type="checkbox"]:focus {
 @media (prefers-color-scheme: dark) {
     html {
         background: #121212;
-        background-image: url("./Radial_Forro_Radio.webp");
     }
 
     .background {
