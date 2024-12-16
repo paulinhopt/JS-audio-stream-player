@@ -63,7 +63,8 @@ body {
 .aroundbutton {
     overflow: visible;
     margin-top: .59em;
-	cursor: pointer;
+    cursor: pointer;
+    margin-bottom: 50px;
 }
 
 .playbutton {
@@ -202,6 +203,7 @@ i.fa-volume-up {
         border-radius: 20px;
         height: 100vh;
     }
+
     body {
         background-color: #121212;
         background: none !important;
@@ -356,7 +358,7 @@ input[type="checkbox"]:focus {
         margin-top: 2em;
     }
 
-    #artist{
+    #artist {
         color: #dcc68d;
         font-weight: 700;
     }
@@ -399,4 +401,81 @@ input[type="checkbox"]:focus {
     .loader {
         border: 3px solid #181a1b;
     }
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #111;
+    margin: 1% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #000;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+    border-radius: 20px;
+}
+
+.modal-content h2 {
+    color: #dcc68d;
+}
+
+/* The Close Button */
+.close1,
+.close2 {
+    color: #dcc68d;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus,
+.close2:hover,
+.close2:focus {
+    color: #726f6f;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.myBtn {
+    background-color: #dcc68d;
+    color: #111;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.divBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 0px;
+}
+
+.imgCapa {
+    border-radius: 5px;
 }

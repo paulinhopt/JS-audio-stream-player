@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <title>Rádio Forró Tradicional</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='src/player.css' media='all' />
     <link rel="icon" type="image/x-icon" href="./src/favicon.ico">
     <!-- Monospace font for play and pause buttons-->
@@ -10,6 +11,7 @@
     <!-- OFL font for rest of controls-->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 </head>
+
 <body>
     <!-- if JS is not enabled -->
     <noscript>
@@ -28,20 +30,52 @@
                 <p id="artist" title="Current playing artist">Current playing artist</p>
                 <p id="songs" title="Current playing artist">Current playing song</p>
                 <div>
-                    <img id="capa" src="./src/Logo.jpg" alt="Rádio Forró Tradicional" style="width: 200px;">
+                    <img id="capa" class="imgCapa" src="./src/Logo.jpg" alt="Rádio Forró Tradicional" style="width: 200px;">
                 </div>
 
                 <div class="controls">
                     <!-- the rotating loading animation-->
                     <h4 id="loader">
-                    <!-- wraps the play button and for js to listen to on click -->
-                    <div class="loader"></div>
+                        <!-- wraps the play button and for js to listen to on click -->
+                        <div class="loader"></div>
                     </h4>
                     <div class="aroundbutton" alt="Run the stream" id="aroundbutton" title="Start the audio stream">
                         <a class="playbutton">
                             <i class="fas fa-play fa-fw on" onclick="" id="on"></i>
                         </a>
                     </div>
+                </div>
+                <!-- Trigger/Open The Modal -->
+                <div class="divBtn">
+                    <button id="myBtn1" class="myBtn">Ultimas Tocadas</button>
+                    <button id="myBtn2" class="myBtn">Pedir Musica</button>
+                </div>
+
+                <!-- The Modal -->
+                <div id="myModal1" class="modal">
+
+                    <!-- Modal content Ultimas tocadas -->
+                    <div class="modal-content">
+                        <span class="close1">&times;</span>
+                        <h2>Ultimas musicas tocadas</h2>
+                        <iframe
+                            src="https://app.radioforrotradicional.com.br/public/radioforrotradicional/history?theme=dark"
+                            frameborder="0" allowtransparency="true"
+                            style="width: 100%; min-height: 90vh; border: 0;"></iframe>
+                    </div>
+                </div>
+
+                <div id="myModal2" class="modal">
+                    <!-- Modal content Pedir Musica -->
+                    <div class="modal-content">
+                        <span class="close2">&times;</span>
+                        <h2>Pedir Musica</h2>
+                        <iframe
+                            src="https://app.radioforrotradicional.com.br/public/radioforrotradicional/embed-requests?theme=dark"
+                            frameborder="0" allowtransparency="true"
+                            style="width: 100%; min-height: 85vh; border: 0;"></iframe>
+                    </div>
+
                 </div>
 
                 <div class="quality" title="Higher quality">
@@ -54,12 +88,13 @@
                 <span class="iconify" data-icon="fa:volume-down" data-inline="false"
                     style="color: #343434;height:14px"></span>
                 <input title="Volume" id="vol-control" type="range" min="0" max="100" step="1" value="100"
-                    oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"/>
+                    oninput="SetVolume(this.value)" onchange="SetVolume(this.value)" />
                 <span class="iconify" data-icon="fa:volume-up" data-inline="false"
                     style="color: #343434;height:14px"></span>
             </div>
         </div>
     </div>
-    <script src="src/player.js"></script>
+    <script src="src/player2.js"></script>
 </body>
+
 </html>
