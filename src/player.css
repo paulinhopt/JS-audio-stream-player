@@ -4,7 +4,7 @@ html {
 
 body {
     font-family: "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
-    background: #dbd9d9;
+    background: #111;
     margin: 0;
     width: 100%;
     margin: auto;
@@ -13,6 +13,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("./Radial_Forro_Radio.webp");
+    background-position: center center;    
 }
 
 /* Sections ---------------------------------- */
@@ -24,7 +26,8 @@ body {
     max-width: 427px;
     width: 100%;
     margin: auto;
-    background: #bababa;
+    background: #111;
+    border-radius: 20px;
 }
 
 .player {
@@ -34,25 +37,25 @@ body {
 
 .background {
     flex: 2;
-    border-bottom: 7px solid #bcbcbc;
+    border-bottom: 7px solid #dcc68d;
     background: #dcc68d;
     padding: 1.5em 0;
     border-radius: 20px;
-    background: #f7f7f7;
+    background: #222;
     margin: 1.222em;
-    box-shadow: 0 0 10px 1px gray;
+    box-shadow: 0 0 10px 1px rgb(41, 41, 41);
 }
 
 .iconify {
-    color: black !important;
+    color: #dcc68d !important;
     ;
 }
 
 .audioPlayer {
     min-height: 100%;
-    background-color: #E1E1E1;
+    background-color: #111;
     text-align: left;
-    color: black;
+    color: #dcc68d;
     box-shadow: inset -7px 0 9px -7px rgba(134, 130, 130, 0.24);
     flex: 1;
     display: flex;
@@ -126,7 +129,7 @@ body {
     z-index: 3;
     width: 0;
     height: 0;
-    border-left: 22px solid #fff1f1;
+    border-left: 22px solid #111;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
 }
@@ -146,13 +149,13 @@ body {
 
 #song {
     font-weight: normal;
-    color: black;
+    color: #dcc68d;
 }
 
 #artist {
     font-weight: bold;
     font-size: large;
-    color: black;
+    color: #dcc68d;
 }
 
 #vol-control {
@@ -206,7 +209,7 @@ i.fa-volume-up {
 
     body {
         background-color: #121212;
-        background: none !important;
+        background: #111 !important;
     }
 
 }
@@ -272,16 +275,16 @@ input[type="checkbox"]:focus {
     display: block;
     position: relative;
     z-index: 3;
-    background: #fff1f1;
+    background: #111;
     width: 22px !important;
     height: 22px !important;
-    border-left: 0px solid #fff1f1 !important;
+    border-left: 0px solid #111 !important;
     border-top: 0px solid transparent !important;
     border-bottom: 0px solid transparent !important;
 }
 
 .on {
-    color: white;
+    color: #111;
     z-index: 100;
     display: block;
     visibility: visible;
@@ -291,7 +294,7 @@ input[type="checkbox"]:focus {
 }
 
 .loader {
-    border: 3px solid #eae7e7;
+    border: 3px solid #111;
     border-top-style: solid;
     border-top-width: 5px;
     -webkit-animation: spin 1s linear infinite;
@@ -340,7 +343,9 @@ input[type="checkbox"]:focus {
     border-top: 1px solid #c8c8c8;
 }
 
-
+p{
+    color: #dcc68d;
+}
 
 /* optional dark mode support. If not desired remove all code until from here until the end */
 @media (prefers-color-scheme: dark) {
@@ -369,7 +374,6 @@ input[type="checkbox"]:focus {
 
     body {
         box-shadow: none;
-        background: #121212;
         background-image: url("./Radial_Forro_Radio.webp");
         background-position: center center;
     }
@@ -379,7 +383,7 @@ input[type="checkbox"]:focus {
     h1,
     h2,
     h3 {
-        color: white;
+        color: #dcc68d;
     }
 
     .right {
