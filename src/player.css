@@ -26,8 +26,9 @@ body {
     max-width: 427px;
     width: 100%;
     margin: auto;
-    background: #111;
+    background: #121212;
     border-radius: 20px;
+    box-shadow: 0 0 10px 5px #121212;
 }
 
 .player {
@@ -38,6 +39,7 @@ body {
 .background {
     flex: 2;
     border-bottom: 7px solid #dcc68d;
+    border-top: 7px solid #dcc68d;
     background: #dcc68d;
     padding: 1.5em 0;
     border-radius: 20px;
@@ -60,7 +62,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px #cac9c9 solid;
+    border-bottom: 3px #dcc68d solid;
 }
 
 .aroundbutton {
@@ -201,8 +203,8 @@ i.fa-volume-up {
 }
 
 @media screen and (max-width: 900px) {
-    .flex_1 {
-        max-width: 100%;
+    .flex_1, .modal-content {
+        min-width: 95%;
         border-radius: 20px;
         height: 100vh;
     }
@@ -243,7 +245,7 @@ input[type="checkbox"]:focus {
     display: inline-block;
     position: relative;
     margin: 1em .3em;
-    border: 2px solid #a2a2a4;
+    border: 2px solid #dcc68d;
     background: linear-gradient(180deg, #494A50 0%, #29292B 100%);
     transition: all 0.2s ease;
 }
@@ -340,72 +342,14 @@ input[type="checkbox"]:focus {
     margin-top: 5em;
     padding-top: .25em;
     justify-content: center;
-    border-top: 1px solid #c8c8c8;
+    border-top: 1px solid #dcc68d;
 }
 
 p{
     color: #dcc68d;
 }
 
-/* optional dark mode support. If not desired remove all code until from here until the end */
-@media (prefers-color-scheme: dark) {
-    html {
-        background: #121212;
-    }
 
-    .background {
-        background-color: #161616;
-        box-shadow: 0 0 10px 1px #151414;
-        border-color: #dcc68d;
-    }
-
-    #artist {
-        margin-top: 2em;
-    }
-
-    #artist {
-        color: #dcc68d;
-        font-weight: 700;
-    }
-
-    #songs {
-        color: #dcc68d;
-    }
-
-    body {
-        box-shadow: none;
-        background-image: url("./Radial_Forro_Radio.webp");
-        background-position: center center;
-    }
-
-    p,
-    a,
-    h1,
-    h2,
-    h3 {
-        color: #dcc68d;
-    }
-
-    .right {
-        background: #181a1b;
-        box-shadow: none;
-        border-bottom: 7px solid #dcc68d;
-    }
-
-    .flex_1 {
-        background: #232323;
-        box-shadow: none;
-        border-radius: 20px;
-    }
-
-    .iconify {
-        color: #dcc68d !important;
-    }
-
-    .loader {
-        border: 3px solid #181a1b;
-    }
-}
 
 /* The Modal (background) */
 .modal {
@@ -482,4 +426,5 @@ p{
 
 .imgCapa {
     border-radius: 5px;
+    
 }
